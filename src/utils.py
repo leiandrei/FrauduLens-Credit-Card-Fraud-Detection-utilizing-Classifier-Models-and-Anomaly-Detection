@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+
 def best_model(
         pipeline: BaseEstimator, cross_val: Union[int, Any],
         params: Dict[str, Any],
@@ -54,11 +55,12 @@ def conf_matrix(ytest: np.ndarray, ypred: np.ndarray, ticklabels: List[str]) -> 
 def plot_roc_curve(model: BaseEstimator, 
                    xtest: np.ndarray, ytest: np.ndarray, name: str) -> RocCurveDisplay:
 
-
     fig, ax = plt.subplots(figsize=(11, 8))
     roc_curve_plt = RocCurveDisplay.from_estimator(model, xtest, ytest, ax=ax, name=name)
+    ax.grid(True, alpha=0.8)
     ax.plot([0, 1], [0, 1], 'k--', label='Random Guess')
     ax.set_title('ROC Curve')
     plt.tight_layout()
 
-    
+def model_training():
+    pass
