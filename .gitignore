@@ -1,0 +1,12 @@
+# environment
+.venv/
+
+# data folder
+data/
+
+# caches
+__pycache__/
+*.pyc
+
+# checkpoints
+.ipynb_checkpoints/
