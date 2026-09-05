@@ -1,2 +1,2 @@
 ## Model Evaluation
-This section focuses on the hyperparameter tuning and cross validation of different machine learning models utilized for the detection. Furthermore, this section here is for the overall evaluation of tuned models, and as well as demonstrating what is the most applicable model for Credit Card Fraud Detection
+This section focuses on the hyperparameter tuning and cross validation of different machine learning models utilized for the detection. Furthermore, this section here is for the overall evaluation of tuned models, and as well as demonstrating what is the most applicable model for Credit Card Fraud Detection. Since, this is a highly-imbalanced dataset, we will test the tuned model on the original and SMOTE sampling.

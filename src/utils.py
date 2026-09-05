@@ -1,8 +1,8 @@
-from sklearn.metrics import confusion_matrix, RocCurveDisplay
+from sklearn.metrics import confusion_matrix, RocCurveDisplay, accuracy_score
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import accuracy_score
 from sklearn.base import BaseEstimator
 from typing import List, Dict, Any, Tuple, Union
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -24,7 +24,8 @@ def best_model(
         cv=cross_val,
         param_grid=params,
         verbose=2,
-        scoring=score
+        scoring=score,
+        n_jobs=-1
     )
 
     model.fit(xtrain, ytrain)
@@ -41,6 +42,11 @@ def best_model(
 
 def conf_matrix(ytest: np.ndarray, ypred: np.ndarray, ticklabels: List[str]) -> None:
 
+    """
+        function to create a confusion matrix heatmap visualization
+        for classifier model evaluation.
+    """
+
     cf = confusion_matrix(ytest, ypred)
 
     fig, ax = plt.subplots(figsize=(11, 8))
@@ -55,12 +61,15 @@ def conf_matrix(ytest: np.ndarray, ypred: np.ndarray, ticklabels: List[str]) -> 
 def plot_roc_curve(model: BaseEstimator, 
                    xtest: np.ndarray, ytest: np.ndarray, name: str) -> RocCurveDisplay:
 
+    """
+        function to plot the roc auc score curve for the model evaluation and
+        visualizattion.
+    """
+
     fig, ax = plt.subplots(figsize=(11, 8))
     roc_curve_plt = RocCurveDisplay.from_estimator(model, xtest, ytest, ax=ax, name=name)
     ax.grid(True, alpha=0.8)
     ax.plot([0, 1], [0, 1], 'k--', label='Random Guess')
+    ax.legend()
     ax.set_title('ROC Curve')
     plt.tight_layout()
-
-def model_training():
-    pass
