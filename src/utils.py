@@ -1,4 +1,5 @@
 from sklearn.metrics import confusion_matrix, RocCurveDisplay, accuracy_score
+from skopt import BayesSearchCV
 from sklearn.model_selection import GridSearchCV
 from sklearn.base import BaseEstimator
 from typing import List, Dict, Any, Tuple, Union
@@ -24,8 +25,7 @@ def best_model(
         cv=cross_val,
         param_grid=params,
         verbose=2,
-        scoring=score,
-        n_jobs=-1
+        scoring=score
     )
 
     model.fit(xtrain, ytrain)
@@ -39,6 +39,37 @@ def best_model(
     print(f"Accuracy Score: {acc_score:.2f}")
 
     return yhat_pred, model.best_estimator_
+
+def optimized_search(
+        pipeline: BaseEstimator,
+        cross_val: Union[int, Any],
+        params: Dict[str, Any],
+        xtrain: np.ndarray, ytrain: np.ndarray,
+        xtest: np.ndarray, ytest: np.ndarray,
+        score: Union[str, None] = 'average_precision') -> Tuple[np.ndarray, BaseEstimator]:
+
+        """
+            this function serves as a optimized hyperparameter search using a 
+            Bayesian Optimized search and returns the y-hat and the best model parameters.
+        """
+
+        optimized = BayesSearchCV(
+            estimator=pipeline,
+            search_spaces=params,
+            cv=cross_val,
+            n_iter=15,
+            random_state=42, 
+            scoring=score,
+            n_jobs=-1
+        )
+
+        optimized.fit(xtrain, ytrain)
+        yhat_predict = optimized.predict(xtest)
+
+        print(f"Best Hyperparameters: {optimized.best_params_}" )
+        print(f"Best CV Score: {optimized.best_score:.4f}")
+
+        return yhat_predict, optimized.best_estimator_
 
 def conf_matrix(ytest: np.ndarray, ypred: np.ndarray, ticklabels: List[str]) -> None:
 
