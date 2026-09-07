@@ -57,7 +57,7 @@ def optimized_search(
             estimator=pipeline,
             search_spaces=params,
             cv=cross_val,
-            n_iter=15,
+            n_iter=30,
             random_state=42, 
             scoring=score,
             n_jobs=-1
@@ -67,7 +67,7 @@ def optimized_search(
         yhat_predict = optimized.predict(xtest)
 
         print(f"Best Hyperparameters: {optimized.best_params_}" )
-        print(f"Best CV Score: {optimized.best_score:.4f}")
+        print(f"Best CV Score: {optimized.best_score_:.4f}")
 
         return yhat_predict, optimized.best_estimator_
 
