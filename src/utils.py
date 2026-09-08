@@ -66,8 +66,7 @@ def optimized_search(
         optimized.fit(xtrain, ytrain)
         yhat_predict = optimized.predict(xtest)
 
-        print(f"Best Hyperparameters: {optimized.best_params_}" )
-        print(f"Best CV Score: {optimized.best_score_:.4f}")
+        print(f"Best Hyperparameters: {optimized.best_params_}")
 
         return yhat_predict, optimized.best_estimator_
 
