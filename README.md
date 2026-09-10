@@ -11,36 +11,39 @@ This project aims to determine the anomalies between the fradulent and non-fraud
 
 ## **Project Structure**
 ```text
-    Credit Card Fraud Detection/    # main project folder
-    ├── .venv/                      # python environment folder (ignored in git)
-    ├── data/                       # dataset directory (ignored in git)
-    │   ├── processed/              # directory for clean data
-    │   │   └── creditcard-processed.csv
-    │   └── raw/                    # directory containing raw data
-    │       └── creditcard.csv
-    ├── docs/                       # directory for a technical report
-    ├── notebooks/                  # main folder for jupyter notebooks
-    │   ├── exploratory_da/         # exploratory data analysis folder
-    │   │   └── eda.ipynb
-    │   ├── model_creation/         # directory for initial model creation
-    │   │   ├── isolation_forest.ipynb
-    │   │   ├── knn.ipynb
-    │   │   ├── logreg.ipynb
-    │   │   ├── random_forests.ipynb
-    │   │   └── README.md           # readme explaining the model_creation directory
-    │   └── model_evaluation/       # directory for hyperparameter tuning and evaluation
-    │       ├── README.md           # readme for model_evaluation
-    │       ├── tuned_knn.ipynb
-    │       ├── tuned_log.ipynb
-    │       └── tuned_rfs.ipynb
-    ├── src/                        # directory that contains the utility pipeline
-    │   ├── __pycache__/            # cache file (ignored in git)
-    │   └── utils.py                # utility pipeline
-    ├── .gitignore
-    ├── config.yaml                 # configuration file
-    ├── LICENSE
-    ├── README.md                   # main README.docs
-    └── requirements.txt            # dependencies, libraries, and environments
+Credit Card Fraud Detection/
+├── .venv/                      # Python virtual environment (ignored in git)
+├── data/                       # Dataset directory (ignored in git)
+│   ├── processed/              # Cleaned and preprocessed data ready for modeling
+│   │   └── creditcard-processed.csv
+│   └── raw/                    # Original, unmodified datasets
+│       └── creditcard.csv
+├── docs/                       # Project documentation and technical reports
+│   └── technical_report.pdf    
+├── models/                     # Serialized, deployment-ready models
+│   └── tuned_rfs_model.joblib
+├── notebooks/                  # Jupyter notebooks for interactive development
+│   ├── exploratory_da/         # Exploratory Data Analysis
+│   │   └── eda.ipynb
+│   ├── model_creation/         # Baseline model training and experimentation
+│   │   ├── isolation_forest.ipynb
+│   │   ├── knn.ipynb
+│   │   ├── logreg.ipynb
+│   │   ├── random_forests.ipynb
+│   │   └── README.md           # Documentation specific to baseline models
+│   └── model_evaluation/       # Hyperparameter tuning and performance metrics
+│       ├── README.md           # Documentation for evaluation metrics
+│       ├── tuned_knn.ipynb
+│       ├── tuned_log.ipynb
+│       └── tuned_rfs.ipynb
+├── src/                        # Reusable utility scripts and functions
+│   ├── __pycache__/            
+│   └── utils.py                # Core pipeline utility functions
+├── .gitignore                  # Specifies intentionally untracked files to ignore
+├── config.yaml                 # Centralized configuration parameters (paths, hyperparameters)
+├── LICENSE                     # Open-source license definition
+├── README.md                   # Project overview and setup instructions
+└── requirements.txt            # Python dependencies and library versions
 ```
 
 ## **Tech Stack**
